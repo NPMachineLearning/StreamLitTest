@@ -33,8 +33,18 @@ st.subheader('Map of all pickups')
 st.map(data)
 
 
-
-hour_to_filter = st.slider("hour", 0, 23, 17)
+hour_to_filter = st.slider("hour", 0, 23, 17, key="hour_filter")
 st.subheader(f'Map of all pickups at {hour_to_filter}:00')
 filtered_data = data[data[DATE_COLUMN].dt.hour == hour_to_filter]
 st.map(filtered_data)
+
+if st.checkbox("Show crendential"):
+    st.subheader("Show credential")
+    st.write(st.secrets["my_credential"])
+
+    secret_key = st.secrets["secret_key"]
+    st.write(f"secret key: {secret_key}")
+
+if st.checkbox("Show session state"):
+    st.subheader("Show session state")
+    st.write(st.session_state)
